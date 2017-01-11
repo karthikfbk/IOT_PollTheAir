@@ -1,0 +1,80 @@
+<mvc:View
+	controllerName="poll.the.air.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+
+	<semantic:DetailPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="{device>/system/phone}"
+		title="{i18n>detailTitle}"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+
+		<semantic:content>
+		<VBox fitContainer="true" justifyContent="Center" alignItems="Center" width="100%" height="60%">
+			<HBox id="map_canvas" fitContainer="true" justifyContent="Center" alignItems="Center" />
+			<Label text="Latitude : {oCord>/lat}, Longitude : {oCord>/lon}"/>
+			</VBox>
+				<Panel>
+		<!--	<VBox items="{path : 'GasindexDetails', length: 1}">
+					<items>-->
+				
+					
+						<f:SimpleForm id="SimpleFormDisplay480"
+								minWidth="1024"
+								maxContainerCols="2"
+								editable="false"
+								layout="ResponsiveGridLayout"
+								title="Pollution Data"
+								labelSpanL="4"
+								labelSpanM="4"
+								emptySpanL="0"
+								emptySpanM="0"
+								columnsL="2"
+								columnsM="2">
+								<f:content>
+									<core:Title text="Location Data" />
+									<Label text="Location Name" />
+									<Text text="{oCord>/name}" />
+									<Label text="Latitude" />
+									<Text text="{oCord>/lat}" />
+									<Label text="Longitude" />
+									<Text text="{oCord>/lon}" />
+									<core:Title text="Gas Concentration" />
+									<Label text="Pollution Value" />
+									<Text text="{oCord>/pollutiondata}" />
+								
+								</f:content>
+							</f:SimpleForm>
+						<!--	</items>
+					</VBox>-->
+					</Panel>
+					<!--
+			<IconTabBar
+				id="iconTabBar"
+				class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter
+						id="iconTabBarFilter1"
+						text = "Info"
+					    tooltip="{i18n>detailIconTabBarInfo}">
+						<content>
+						
+							</content>
+					</IconTabFilter>
+						<IconTabFilter
+						id="iconTabBarFilter2"
+						tooltip="{i18n>detailIconTabBarInfo}">
+								</IconTabFilter>
+				</items>
+			</IconTabBar>-->
+		
+		</semantic:content>
+
+	</semantic:DetailPage>
+
+</mvc:View>

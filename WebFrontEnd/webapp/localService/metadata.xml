@@ -1,0 +1,53 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="MyFormulaJeeDb">
+            <EntityType Name="Gasindex">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Gasindex1" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Gasindex2" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Gasname1" Type="Edm.String" Nullable="true" MaxLength="255"/>
+                <Property Name="Gasname2" Type="Edm.String" Nullable="true" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Latitude" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Location" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Longitude" Type="Edm.Double" Nullable="true"/>
+                <NavigationProperty Name="GeolocationDetails" Relationship="MyFormulaJeeDb.Gasindex_Geolocation_Many_One0" FromRole="Gasindex" ToRole="Geolocation"/>
+            </EntityType>
+            <EntityType Name="Geolocation">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="Latitude" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Longitude" Type="Edm.Double" Nullable="true"/>
+                <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="255"/>
+                <NavigationProperty Name="GasindexDetails" Relationship="MyFormulaJeeDb.Gasindex_Geolocation_Many_One0" FromRole="Geolocation" ToRole="Gasindex"/>
+            </EntityType>
+            <Association Name="Gasindex_Geolocation_Many_One0">
+                <End Type="MyFormulaJeeDb.Gasindex" Multiplicity="*" Role="Gasindex"/>
+                <End Type="MyFormulaJeeDb.Geolocation" Multiplicity="1" Role="Geolocation"/>
+                <ReferentialConstraint>
+                    <Principal Role="Geolocation">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="Gasindex">
+                        <PropertyRef Name="Location"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="MyFormulaJeeDbContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Gasindexs" EntityType="MyFormulaJeeDb.Gasindex"/>
+                <EntitySet Name="Geolocations" EntityType="MyFormulaJeeDb.Geolocation"/>
+                <AssociationSet Name="Gasindex_Geolocation_Many_One0Set" Association="MyFormulaJeeDb.Gasindex_Geolocation_Many_One0">
+                    <End EntitySet="Gasindexs" Role="Gasindex"/>
+                    <End EntitySet="Geolocations" Role="Geolocation"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
